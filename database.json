@@ -1,0 +1,35 @@
+{
+	"person": [
+		{
+			"id": 0,
+			"name": "ekine chukwuemeks emmanuel",
+			"phone": "08127575050",
+			"email": "ekinechukwuemeka88@gmail.com",
+			"address": {
+				"city": "portharcourt",
+				"LGA": "oguta local goverment"
+			}
+		},
+
+		{
+			"id": 1,
+			"name": "alex elijah",
+			"phone": "907890800000",
+			"email": "ikpa88@gmail.com",
+			"address": {
+				"city": "portharcourt",
+				"LGA": "akwa-ibom local goverment"
+			}
+		},
+		{
+			"id": 2,
+			"name": "jackie smith",
+			"phone": "121333415161",
+			"email": "ikpa88@gmail.com",
+			"address": {
+				"city": "portharcourt",
+				"LGA": "akwa-ibom local goverment"
+			}
+		}
+	]
+}
