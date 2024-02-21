@@ -1,4 +1,9 @@
 {
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "name": "my-routing-tutorial",
   "version": "0.1.0",
   "private": true,
@@ -11,15 +16,19 @@
   "dependencies": {
     "@types/node": "18.14.5",
     "@types/react-dom": "18.0.11",
+    "bcrypt": "^5.1.1",
     "eslint": "8.35.0",
-    "eslint-config-next": "13.2.3",
+    "eslint-config-next": "^14.1.0",
     "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.1.0",
     "mongoose": "^7.6.2",
     "mongose": "^0.0.2-security",
-    "next": "13.2.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "^14.1.0",
+    "next-auth": "^4.24.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.47.0",
     "react-icons": "^4.8.0",
     "typescript": "4.9.5"
   },
@@ -28,5 +37,10 @@
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

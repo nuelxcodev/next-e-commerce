@@ -3,26 +3,112 @@
 @tailwind utilities;
 
 :root {
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  --secocndary-color: white;
+  --cart_bg: rgb(225, 225, 225);
+  --color: black;
+  --primary-color: rgb(213, 227, 215);
+}
+[data-theme="dark"] {
+  --secocndary-color: rgb(20, 28, 30);
+  --cart_bg: rgb(93, 92, 92);
+  --color: white;
+  --primary-color: rgb(74, 74, 74);
 }
 
-* {
+*,
+:before,
+:after {
+  margin-inline: auto;
   padding: 0;
-  margin: 0;
-  transition: all 1.7ms ease-in-out;
+  box-sizing: border-box;
+  max-width: 1536px;
 }
 
 html,
 body {
-  max-width: 100vw;
-  padding-inline: 0;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  max-width: 1536px;
+  width: 100vw;
+  background-color: rgb(240, 240, 240);
+  margin-inline: auto;
 }
-.input-container {
-  @apply border-b-2  w-[100%] m-4 p-3
+
+.information {
+  padding: 0.5rem;
+  overflow-x: visible;
 }
+.information::-webkit-scrollbar {
+  display: none;
+}
+.branding {
+  height: inherit;
+  width: 100%;
+  background-image: url("../../public/images/bg1.jpg");
+  background-size: cover;
+  background-position: 20%;
+  background-repeat: no-repeat;
+}
+.topReview {
+  display: flex;
+  overflow-x: scroll;
+  padding-block: 7rem;
+  padding-inline-start: 3rem;
+  margin: 0;
+  background-color: rgb(226, 226, 226);
+}
+.topReview::-webkit-scrollbar {
+  display: none;
+}
+.cartinfo {
+  display: flex;
+  gap: 7%;
+  @apply flex-col md:flex-row;
+}
+.cartinfo div {
+  width: 20vw;
+  text-align: center;
+}
+
+.catmenu {
+  display: none;
+}
+.imga {
+  transition: 1s;
+}
+.imga:hover {
+  object-fit: cover;
+  height: 90%;
+}
+.image-product::-webkit-scrollbar,
+.category-display::-webkit-scrollbar {
+  display: none;
+}
+.step {
+  width: 25%;
+  text-align: center;
+}
+ul li {
+  @apply w-[65%] lg:w-max my-4;
+}
+.signIn {
+  @apply bg-white w-full md:w-[50%] lg:w-[30%] flex flex-col shadow-xl rounded-xl my-5 p-8;
+}
+.signIn input {
+  @apply border p-3 mx-4 rounded-md shadow-inner outline-none;
+}
+.signIn label {
+  @apply w-[90%];
+}
+.loginbtn div {
+  @apply active:bg-gray-400 m-1 border p-2;
+}
+.icons-cont div {
+  @apply md:mt-8 lg:mt-0;
+}
+.oauth button {
+  background-color: rgb(60, 59, 59);
+}
+.oauth button:hover {
+  transition: 1s;
+  background-color: rgb(91, 90, 90);
+}
+/* ****************************************** */

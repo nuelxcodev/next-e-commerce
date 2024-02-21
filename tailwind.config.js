@@ -11,7 +11,14 @@ module.exports = {
 	],
 
 	theme: {
-		extend: {},
+
+		extend: {
+			colors: {
+				"secondary-color": "var(--secondary-color)",
+				"cartbg-color": "var(--cart_bg)",
+				"text-color": "var(--color)",
+			}
+		},
 	},
 	plugins: [],
 };
