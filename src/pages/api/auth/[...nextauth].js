@@ -10,10 +10,7 @@ import { NextResponse } from "next/server";
 
 export const authOptions = {
     providers: [
-        GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        }),
+
         CredentialsProvider({
             name: 'credentials',
             credentials: {},
@@ -30,38 +27,65 @@ export const authOptions = {
                 } catch (error) {
                     console.log(error)
                 }
-            },
-        }),
-
-
-    ],
-    callbacks: {
-        async session({ session }) {
-            return session
-        },
-        async signIn({ profile }) {
-             const user = {id:1}
-
-            try {
-                if (!profile) {
-                    return null
-                }
-                console.log(profile)
-                return user
-            } catch (error) {
-                console.log(error)
             }
 
-        }
-    },
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        })
+    ],
     session: {
         strategy: "jwt",
     },
-    secret: process.env.NEXTAUTH_SECRET,
-    pages: {
-        sigin: "/",
-        signout: "/",
+
+    callbacks: {
+        async signIn({ user, account }) {
+            if (account.provider === "google") {
+                const { name, email } = user
+                try {
+                    await dbconnection()
+                    const user = await User.findOne({ email })
+                    if (user) {
+                        return user
+                    }
+                    const newAccount = await new User({
+                        name: name,
+                        email: email
+                    })
+                    const res = await newAccount.save()
+                    return user
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        },
+        async jwt({ token, user }) {
+            if (user) {
+                token.email = user.email; // Add the user id to the token
+                token.name = user.name; // Add the user name to the token
+            }
+            return token;
+        },
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.email = token.email;
+                session.user.name = token.name;
+
+            }
+            console.log(session) // Add the user id to the session
+            return session;
+        },
+        secret: process.env.NEXTAUTH_SECRET,
+        pages: {
+            sigin: "/login",
+            signup: '/register',
+
+        }
+
     }
+
 
 
 }

@@ -3,6 +3,11 @@ import { CartProvider } from "../../utils/Cartcontext";
 import "../styles/globals.css";
 import Head from "next/head";
 import { AuthProvider } from "../../utils/Providers";
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
 
 
 
@@ -26,11 +31,13 @@ export default function MyApp({ Component, pageprops, title }) {
 
 			</Head>
 
-			<AuthProvider>
-				<CartProvider >
-					<Component {...pageprops} /> 
-				</CartProvider>
-			</AuthProvider>
+			
+				<AuthProvider>
+					<CartProvider >
+						<Component {...pageprops} />
+					</CartProvider>
+				</AuthProvider>
+			
 
 
 

@@ -8,6 +8,8 @@ import { AiFillHeart } from 'react-icons/ai'
 import Link from 'next/link'
 
 
+
+
 function Itemscard({ product }) {
     const { state, dispatch } = useContext(Cartcontext)
     const { cartitems } = state
@@ -15,10 +17,11 @@ function Itemscard({ product }) {
 
     const existing = cartitems.find((item) => item.slug === product.slug)
     const quantity = existing ? existing.quantity + 1 : 1
+    
+
 
     return (
         <div className=' flex-col items-center justify-center mx-2 w-64  p-4 h-74 rounded-md bg-white shadow-md '>
-
 
             <div className=' overflow-hidden h-52 flex justify-center items-center'  >
                 <Link href={`/item/${product.slug}`}>
@@ -40,8 +43,10 @@ function Itemscard({ product }) {
                     <button className=' shadow-lg bg-purple-800 text-white p-3 rounded-md active:bg-purple-900 '
                         onClick={() => {
                             // get existing data and adding quantity to it
+
                             dispatch({ type: "ADD_TO_CART", payload: { ...product, quantity } })
-                        }}>add to cart ${product.price}</button>
+                        }}>add to cart ${product.price}
+                    </button>
 
 
 

@@ -25,7 +25,7 @@ function Cartegorymenu() {
 
 
     return (
-        <div className='catmenu absolute lg:top-[4.2rem] p-8 lg:left-[30%] bg-white h-max w-[100%] md:w-[50%] rounded-xl overflow-hidden shadow-lg ' id='catmenu'>
+        <div className='border absolute bg-gray-200  top-[53vh] md:top-[25vh] md:left-0  lg:border-none lg:top-[4.2rem] p-8 lg:left-[30%] md:bg-white h-max w-full md:w-[50%] md:rounded-xl overflow-hidden  shadow-lg ' id='catmenu'>
             {
                 categorylist.map((list) => (
                     <div key={list.slug}

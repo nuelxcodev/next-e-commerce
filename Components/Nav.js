@@ -9,6 +9,7 @@ import Link from 'next/link'
 import Cartegorymenu from './Cartegorymenu'
 import data from '../utils/Data'
 import { signOut, useSession } from 'next-auth/react'
+import Avatarimage from './Avatarimage'
 
 
 
@@ -24,9 +25,8 @@ function Nav() {
     const [menudwn, setmenudwn] = useState(false)
     const [menudwn2, setmenudwn2] = useState(false)
 
-    console.log(menudwn)
     return (
-        <div className='w-screen h-16 flex flex-col md:relative md:justify-around md:flex-row lg:justify-between py-3 items-center shadow-md fixed bg-white z-50' >
+        <div className=' fixed w-screen h-16 flex flex-col md:relative md:justify-around md:flex-row lg:justify-between py-3 items-center shadow-md  bg-white z-50' >
             <div className='flex justify-between w-full lg:w-max'>
                 <div className=' text-purple-800 font-bold mx-3'>NUELmat.com</div>
                 <div className='mr-4 lg:hidden lg:mr-0 relative '>
@@ -73,15 +73,14 @@ function Nav() {
                     <div className='w-full my-4 md:hidden'>
                         {session ? (
                             <div className='flex justify-around '>
-                                <div className=' flex m-0'>
-                                    <BiUserCircle size={30} />
-                                    <span className='m-1'>{session?.user.name}</span>
+                                <div className='m-0'>
+                                    <Avatarimage />
                                 </div>
                                 <input type='button' className=' bg-yellow-400 py-1 px-3 rounded-md active:text-white'
                                     value='logout' onClick={() => signOut()} />
                             </div>) : (
                             <div className=' w-[65%] mb-3'><Link href="/auth/login">login</Link></div>
-                            )}
+                        )}
                     </div>
 
 
@@ -112,7 +111,7 @@ function Nav() {
                             }
 
                         }}><span className='m-0 w-full'>category</span>
-                        <AiOutlineDown /></li>
+                            <AiOutlineDown /></li>
 
                         {/* product */}
                         <li><Link href={{ pathname: '/products' }}>product</Link></li>
@@ -154,13 +153,13 @@ function Nav() {
 
             }}>
                 <div className=' m-0'>
-                    <BiUserCircle size={30} />
+                    <Avatarimage />
                 </div>
-                <span className='m-1'>{session?.user.name}</span>
+
 
                 <section className={`absolute bg-white w-[100%] shadow-lg p-5 top-[9vh] lg:-left-7 ${menudwn2 === false ? "hidden" : "block"}`} >
                     <section className='flex flex-col loginbtn'>{
-                        !session ? (<div><Link href="/auth/login">login</Link></div>) : (<div>profile</div>)
+                        !session ? (<div><Link href="login">login</Link></div>) : (<div>profile</div>)
                     }
                         <div><input type='button' value="logOut" onClick={() => signOut()} /></div>
                     </section>
