@@ -21,7 +21,7 @@ function Itemscard({ product }) {
 
 
     return (
-        <div className=' flex-col items-center justify-center mx-2 w-64  p-4 h-74 rounded-md bg-white shadow-md '>
+        <div className=' mx-2 text md:w-64  p-4 h-74 rounded-md bg-white shadow-md '>
 
             <div className=' overflow-hidden h-52 flex justify-center items-center'  >
                 <Link href={`/item/${product.slug}`}>
@@ -37,7 +37,7 @@ function Itemscard({ product }) {
 
                 </div>
 
-                <div className=' flex justify-between items-center py-4'>
+                <div className=' flex justify-between items-center py-4 '>
 
 
                     <button className=' shadow-lg bg-purple-800 text-white p-3 rounded-md active:bg-purple-900 '
@@ -50,7 +50,7 @@ function Itemscard({ product }) {
 
 
 
-                    <div onClick={() => {
+                    <div className=' m-0' onClick={() => {
                         dispatch({ type: "ADDWISHLIST_CART", payload: { ...product, quantity } })
                     }}>
 

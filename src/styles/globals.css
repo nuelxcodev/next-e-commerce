@@ -28,8 +28,9 @@ html,
 body {
   max-width: 1536px;
   width: 100vw;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(246, 246, 246);
   margin-inline: auto;
+  overflow-x: hidden;
 }
 
 .information {
@@ -58,11 +59,6 @@ body {
 .topReview::-webkit-scrollbar {
   display: none;
 }
-.cartinfo {
-  display: flex;
-  gap: 7%;
-  @apply flex-col md:flex-row;
-}
 .cartinfo div {
   width: 20vw;
   text-align: center;
@@ -72,10 +68,10 @@ body {
   display: none;
 }
 .imga {
+  object-fit: cover;
   transition: 1s;
 }
 .imga:hover {
-  object-fit: cover;
   height: 90%;
 }
 .image-product::-webkit-scrollbar,
@@ -111,5 +107,84 @@ ul li {
   transition: 1s;
   background-color: rgb(91, 90, 90);
 }
+.checkout-form label {
+  @apply w-[95%] mt-4;
+}
+.checkout-form input {
+  @apply p-3 md:rounded-md border shadow-inner;
+}
+.items-related {
+  @apply flex gap-2 flex-col md:flex-row overflow-scroll my-12 w-[85%];
+}
+.items-related::-webkit-scrollbar {
+  display: none;
+}
+.deliveryInfo div {
+  @apply m-0 w-full text-left flex gap-7;
+}
+.deliveryInfo div b {
+  @apply m-0 w-[25%];
+}
+.deliveryInfo div span {
+  @apply m-0 w-[75%];
+}
+.itemsTable {
+  @apply w-full;
+}
+table {
+  @apply w-full text-center mt-5;
+}
 
+table thead th {
+  @apply bg-zinc-800 text-white p-2;
+}
+table tbody tr td {
+  @apply p-2;
+}
+table tbody tr:nth-child(even) {
+  @apply bg-zinc-300;
+}
+table tbody tr:last-of-type {
+  @apply border-b-zinc-900 border-b-4;
+}
+.payment input {
+  @apply shadow-sm m-3 border border-zinc-500 p-2 rounded-lg w-[90%];
+}
+.infoPay::-webkit-scrollbar {
+  @apply hidden;
+}
+.itemPurchesed {
+  @apply w-full md:w-[60%] h-[70vh] overflow-y-scroll mt-6 md:mt-0;
+}
+.textNB {
+  @apply md:w-[35%] border shadow-inner p-6 overflow-y-scroll h-[30vh] md:h-auto;
+}
+.itemPurchesed::-webkit-scrollbar,
+.textNB::-webkit-scrollbar {
+  display: none;
+}
+.orderNav {
+  @apply w-full flex
+}
+.orderNav li {
+  @apply w-max mx-2 rounded-lg text-white bg-purple-800 p-3 cursor-pointer active:bg-purple-900;
+}
+.adminNav {
+  @apply border md:w-[25%] flex md:flex-col items-center;
+}
+.productADDEDit {
+  @apply flex flex-col lg:w-[50%] justify-between items-center;
+}
+.productADDEDit span {
+  @apply w-full bg-zinc-200 flex m-2 p-2 gap-3;
+}
+.productADDEDit input {
+  @apply w-full bg-transparent;
+}
+.productdisplay {
+  @apply w-full md:w-[80%] h-[80vh] overflow-y-scroll;
+}
+.productdisplay::-webkit-scrollbar {
+  display: none;
+}
 /* ****************************************** */

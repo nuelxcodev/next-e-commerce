@@ -1,10 +1,16 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import data from '../utils/Data'
 import Link from 'next/link'
 
 
-function Cartegorymenu() {
+function Cartegorymenu({ open }) {
+    const [dwn, setdwn] = useState()
+
+    useEffect(() => {
+        if (open === true) { setdwn(true) }
+        else { setdwn(false) }
+    }, [open])
 
 
     const product = data.products
@@ -25,16 +31,20 @@ function Cartegorymenu() {
 
 
     return (
-        <div className='border absolute bg-gray-200  top-[53vh] md:top-[25vh] md:left-0  lg:border-none lg:top-[4.2rem] p-8 lg:left-[30%] md:bg-white h-max w-full md:w-[50%] md:rounded-xl overflow-hidden  shadow-lg ' id='catmenu'>
+        <div className={`border absolute
+        bg-gray-200  
+        top-[53vh] 
+        md:top-[25vh] 
+        md:left-0  
+        lg:border-none 
+        lg:top-[4.2rem] p-8 
+        lg:left-[30%] md:bg-white 
+        h-max w-full md:w-[50%] 
+        md:rounded-xl overflow-hidden  shadow-lg 
+        ${dwn === true ? 'block' : 'hidden'} `}>
             {
                 categorylist.map((list) => (
-                    <div key={list.slug}
-
-                        onClick={() => {
-                            document.getElementById('catclick').style.color = "initial";
-                            document.getElementById('catclick').style.fontWeight = "normal";
-                            document.getElementById("catmenu").style.display = "none"
-                        }}>
+                    <div key={list.slug} onClick={() => setdwn(false)}>
                         <Link href={{ pathname: '/products', query: { category: list.category } }}
                         >
                             <div className=' active:bg-gray-400 active:text-white flex p-3 cursor-pointer'>

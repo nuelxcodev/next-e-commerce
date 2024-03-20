@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import { Cartcontext } from '../../utils/Cartcontext'
 import { BiTrash } from 'react-icons/bi'
 import Nav from '../../Components/Nav'
+import Link from 'next/link'
 
 function Wishlist() {
     const { state, dispatch } = useContext(Cartcontext)
@@ -11,16 +12,18 @@ function Wishlist() {
 
 
     return (
-        <div className=' flex-col'>
-            <Nav/>
+        <div className='flex-col'>
+            <Nav />
             <section className='h-max'>
             </section>
-            <section className=' pt-20 grid md:grid-cols-2 lg:grid-cols-3 gap-2'>
+            <section className=' pt-20 lg:pt-5 grid md:grid-cols-2 lg:grid-cols-3 gap-2'>
                 {
                     wishlist.map((wish) => (
                         <div key={wish.slug}
                             className=' bg-white shadow-lg m-auto w-[90%] h-52 p-7 flex  rounded-2xl'>
-                            <img src={wish.image} alt={wish.name} className=' w-[7rem] h-[7rem]' />
+                            <Link href={`/item/${wish.slug}`}>
+                                <img src={wish.image} alt={wish.name} className=' w-[7rem] h-[7rem]' />
+                            </Link>
                             <section className=' flex h-[4rem] '>
 
                             </section>

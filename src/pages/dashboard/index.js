@@ -1,49 +1,58 @@
-
-import { useRouter } from 'next/router'
 import React from 'react'
+import Avatarimage from '../../../Components/Avatarimage'
+import { useSession } from 'next-auth/react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-function Index() {
+function Admin({ children }) {
+    const navs = ["profile", "chart", "sales", "history", "products"]
+    const navs2 = ["home", "cart", "orders"]
+
+    const { data: session, status } = useSession()
+
     const router = useRouter()
-    return (
-        <div>
 
-            <div className=' flex '>
-                <aside className='h-[100vh] m-0 bg-gray-700 w-[25%]'>
-
-                </aside>
-                <main className='w-[75%]'>
-                    <header className='m-0 w-full bg-gray-700 p-4 '>
-                        <input >home</input>
-                        <input >home</input>
-                        <input >home</input>
-                        <input >home</input>
-
-                        <div>
-                            
-                        </div>
-                    </header>
-                    <div className='m-0 shadow-lg w-full py-4 flex rounded-xl' >
-                        <div className=' text-left flex flex-col rounded-xl bg-orange-400 text-white w-[30%] shadow-lg p-5' >
-                            <span className=' m-0'><b>balance:</b> $ 3000</span>
-                            <div className=' text-sm mt-2 ml-0'>
-                                <span>total balance: $ 4599</span>
-                                <p>total profit gained</p>
-                            </div>
-
+    if (status === "authenticated")
+        return (
+            <div >
+                <section className=' bg-white shadow-lg py-5'>
+                    <div className='flex justify-around md:w-[50%] md:border-2 rounded-lg items-center '>
+                        {
+                            navs2.map(nav => (
+                                <Link key={nav}
+                                    className="active:text-white active:bg-purple-800  text-center p-3 rounded-lg w-[33.3%]"
+                                    href={nav === "home" ? "/" : `/${nav}`}>{nav}</Link>
+                            ))
+                        }
+                        <div className=' flex'>
+                            <Avatarimage />
                         </div>
                     </div>
-                    <section>
 
-                    </section>
+                </section>
+                <section className='flex flex-col md:flex-row  h-[80vh]'>
+                    <aside className='adminNav gap-2 mt-2'>
+                        {
+                            navs.map(nav => (<button key={nav}
+                                className={`md:w-[90%] mx-0 my-1 text-left px-4 py-3 shadow-lg
+                             rounded-lg active:bg-zinc-100 ${router.pathname === `/dashboard/${nav}` || router.pathname === `/dashboard/${nav}/[product]` ? "bg-zinc-500 text-white" : "bg-white"}`}
+                                onClick={() => router.replace(`/dashboard/${nav}`)}>{nav}</button>))
+                        }
 
-                </main>
-
-
-
-
+                    </aside>
+                    <aside className='w-full border md:w-[75%] md:p-3 md:overflow-y-scroll'>
+                        {children ? <div>{children} </div> : (
+                            <div className=' flex justify-center items-center h-screen md:h-full'>
+                                <h1>welcome Admin</h1>
+                                {session?.user?.email}
+                            </div>
+                        )}
+                    </aside>
+                </section>
             </div>
-        </div>
-    )
+        )
+    router.replace('/login')
 }
 
-export default Index
+
+export default Admin;

@@ -2,14 +2,16 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import data from '../../utils/Data'
-import Itemscard from '../../Components/Itemscard'
 import Nav from '../../Components/Nav'
+import { Pagination } from '../../Components/Pagination'
+
 
 
 function Products() {
     const router = useRouter()
-
     const [productArray, setproductArray] = useState([])
+    const [numb, setnum] = useState(0)
+
     useEffect(() => {
         if (router.query.search) {
             const products = data.products.map((product) => { return product })
@@ -26,23 +28,11 @@ function Products() {
 
     }, [router.query])
 
-    if (router.asPath === "/products") {
-        return (
-            <div>
-                <Nav />
-                <div className='pt-16 lg:pt-0 overflow-x-hidden gap-4 container grid grid-cols-2 md:grid-cols-3  lg:grid-cols-4'>{
-                data.products.map((product) => (<Itemscard product={product} key={product.slug} />))
-            }
-            </div>
-            </div>
-            
-        )
-    }
-
 
     // category display
     const filteritems = []
     const category = []
+
 
     for (let index = 0; index < data.products.length; index++) {
         const element = data.products[index];
@@ -65,37 +55,60 @@ function Products() {
 
     return (
         <div >
-            <Nav/>
-            <section className='pt-16 lg:pt-0'>
+            <div>
+                <Nav />
+            </div>
+            <section >
 
-                <section>
-                    <div>
+                <section className='w-full flex flex-col md:flex-row pt-20 md:pt-0'>
+                    {/* filteration section */}
+                    <aside className=' w-full md:w-[20%] 
+                    border-2 md:h-[80vh] gap-[10%] md:gap-0 flex flex-row
+                     md:flex-col items-center justify-center
+                      md:justify-start p-5'>
+                        <h1>filter items by price</h1>
 
-                        <section >
-                            {router.query.search ? (
-                                <div>
-                                    {productArray.length === 0 ? (<div className='m-52 text-4xl text-center'> no item found!</div>) : (
-                                        <div className=' w-[70%] overflow-x-hidden gap-4 pt-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-                                            {productArray.map((product) => (<Itemscard product={product} key={product.slug} />))}
-                                        </div>)}
-                                </div>
-                            ) : (
-                                <div >
-                                    <span className='ml-20 text-xl '> {router.query.category}:</span>
-                                    <div className=' flex pt-2 overflow-x-hidden justify-center category-display'>
-                                        {filteritems.map((product) => (<Itemscard product={product} key={product.slug} />
-                                        ))
-                                        }
-                                    </div>
-                                </div>)
+                        <select defaultValue="any" onChange={(e) => setnum(e.target.value === "any" ? 0 : e.target.value)}
+                            className='w-[30%] md:w-[95%] md:mt-5 bg-zinc-400 p-2 text-white outline-none  '>
+                            {
+                                ["any", 50, 100, 200, 500, 800, 1000].map(num => <option
+                                    className=' bg-white text-black'
+                                    key={num} >{num}</option>)
                             }
-                        </section>
-                    </div>
-                    <br></br>
+                        </select>
 
-                    <section>
-                        <span className='ml-20 text-xl '> </span>
-                    </section>
+                        <p className=' hidden md:block md:mt-8 text-purple-800'
+                        >{numb === 0 ? "showing all items" : `showing all items below $${numb}`}</p>
+
+                    </aside>
+
+                    {/* items display section */}
+                    <div className='productdisplay'>
+                        {
+                            router.asPath === "/products" ? (
+                                <div>
+                                    <Pagination group={numb !== 0 ? data.products.filter(x => x.price < numb) : data.products} />
+                                </div>)
+                                : (<section >
+                                    {router.query.search ? (
+                                        <div>
+                                            {productArray.length === 0 ? (
+                                                <div className='m-52 text-4xl text-center'> no item found!</div>)
+                                                : (
+                                                    <Pagination group={numb !== 0 ? productArray.filter(x => x.price < numb) : productArray} />
+                                                )}
+                                        </div>
+                                    ) : (
+                                        <div >
+                                            <span className='ml-20 text-xl '>
+                                                {router.query.category}:</span>
+                                            <Pagination group={numb !== 0 ? filteritems.filter(x => x.price < numb) : filteritems} />
+                                        </div>)
+                                    }
+                                </section>)
+                        }
+
+                    </div>
                 </section>
 
 

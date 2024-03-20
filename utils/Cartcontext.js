@@ -9,7 +9,8 @@ const initialState = {
         JSON.parse(Cookies.get("cartitems")) : [],
     wishlist: Cookies.get("wishlist") ?
         JSON.parse(Cookies.get("wishlist")) : [],
-
+    shipping: Cookies.get("shipping") ?
+        JSON.parse(Cookies.get("shipping")) : [],
 }
 
 function Reducer(state, action) {
@@ -31,8 +32,9 @@ function Reducer(state, action) {
         // delect existing items from cart
         case "REMOVEITEM_CART": {
             const itemtoremove = action.payload;
-            const cartitem = state.cartitems.filter(item => item.slug !== itemtoremove.slug)
-            return { ...state, cartitems: cartitem }
+            const cartitems = state.cartitems.filter(item => item.slug !== itemtoremove.slug)
+            Cookies.set("cartitems", JSON.stringify(cartitems))
+            return { ...state, cartitems: cartitems }
         }
         // add new whislistItems to whislist
         case "ADDWISHLIST_CART": {
@@ -51,6 +53,11 @@ function Reducer(state, action) {
             const removewish = action.payload;
             const removed = state.wishlist.filter(item => item.slug !== removewish.slug)
             return { ...state, wishlist: removed }
+        }
+        case "ADD_SHIPPING": {
+            const shipping = action.payload
+            Cookies.set("shipping", JSON.stringify(shipping))
+            return { ...state, locstion: shipping}
         }
         default:
             return state;

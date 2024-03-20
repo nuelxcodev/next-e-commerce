@@ -12,14 +12,15 @@ function Carousel({ children: slides }) {
     useEffect(() => {
         setInterval(next, 8000)
     }, [])
+
     return (
-        <div className=' overflow-hidden relative lg:h-[100vh] w-[100vw]'>
-            <div className=' flex  item-center transition-transform ease-out duration-700'
-                style={{ transform: `translateX(-${current * 100}%)` }} >
+        <div className=' overflow-hidden relative lg:h-[45rem]  w-[100vw]'>
+            <div className=' flex  item-center transition-transform ease-out duration-700 z-20'
+                style={{ transform: `translateX(-${current * 100}%)` }}  >
                 {slides}
             </div>
 
-            <div className=' absolute inset-0 flex items-center justify-between p-6'>
+            <div className=' absolute inset-0 flex items-center justify-between p-6 z-40'>
 
                 <button onClick={prev} className=' bg-white opacity-50 p-3 rounded-full' >
                     <AiOutlineLeft />
@@ -41,10 +42,7 @@ function Carousel({ children: slides }) {
 
 
                 </div>
-
             </div>
-
-            
         </div>
 
 

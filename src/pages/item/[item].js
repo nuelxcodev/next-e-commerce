@@ -5,6 +5,8 @@ import Nav from "../../../Components/Nav"
 import React, { useContext } from 'react'
 import data from '../../../utils/Data'
 import { Cartcontext } from '../../../utils/Cartcontext'
+import Itemscard from '../../../Components/Itemscard'
+import Link from 'next/link'
 
 function Item() {
     const { state, dispatch } = useContext(Cartcontext)
@@ -13,18 +15,37 @@ function Item() {
     const { query } = useRouter()
     const { item } = query
 
-    console.log(query)
     const product = data.products.find(product => product.slug === item)
     const existing = product ? cartitems.find((item) => item.slug === product.slug) : null;
     const quantity = existing ? existing.quantity + 1 : 1
 
 
+    const filteritems = []
+    const category = []
+
+    for (let index = 0; index < data.products.length; index++) {
+        const element = data.products[index];
+        category.push(element)
+    }
+    category.find((productcategory, index) => {
+        const group = category.filter((group) => group === productcategory)
+        if (category.indexOf(productcategory) === index) {
+            if (group[0].category === product?.category || group[0].brand === product?.brand) {
+                filteritems.push(group[0]);
+
+            }
+        }
+        console.log('g')
+    })
+
+
+
 
     if (product) {
         return (
-            <div >
+            <div className=' overflow-hidden'>
                 <Nav />
-                <section className='flex flex-col  lg:flex-row pt-16 lg:pt-7'>
+                <section className='flex flex-col  lg:flex-row pt-16 lg:pt-7 '>
                     <div className='lg:mx-11 w-full md:w-2/5 max-h-[80vh] overflow-scroll image-product' >
                         <img src={product.image} alt={product.name} className='w-full ' />
                     </div>
@@ -75,6 +96,14 @@ function Item() {
                         </section>
                     </div>
 
+                </section>
+
+                <section className='pt-16 '>
+                    <p className='ml-16'>related items</p>
+                    <div className='items-related'>
+                        {filteritems.map(product => (<Itemscard product={product} key={product.name} />))}
+                        <Link href={`/products`} className=' flex items-end m-0 text-purple-800 underline'> see more</Link>
+                    </div>
                 </section>
             </div>
         )

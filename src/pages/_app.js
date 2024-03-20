@@ -3,7 +3,6 @@ import { CartProvider } from "../../utils/Cartcontext";
 import "../styles/globals.css";
 import Head from "next/head";
 import { AuthProvider } from "../../utils/Providers";
-import 'react-toastify/dist/ReactToastify.css';
 
 
 
