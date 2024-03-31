@@ -1,4 +1,4 @@
-
+'use client'
 import Itemscard from '../../Components/Itemscard'
 import data from '../../utils/Data'
 
@@ -33,7 +33,7 @@ function Home() {
     <div >
 
       <Nav />
-      <div className=' '>
+      <div className='pt-20 '>
         <Carousel>
           {
             images.map((image) => (

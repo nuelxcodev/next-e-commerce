@@ -45,7 +45,7 @@ function Item() {
         return (
             <div className=' overflow-hidden'>
                 <Nav />
-                <section className='flex flex-col  lg:flex-row pt-16 lg:pt-7 '>
+                <section className='flex flex-col  lg:flex-row pt-24 '>
                     <div className='lg:mx-11 w-full md:w-2/5 max-h-[80vh] overflow-scroll image-product' >
                         <img src={product.image} alt={product.name} className='w-full ' />
                     </div>

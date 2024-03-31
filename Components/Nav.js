@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react'
@@ -29,7 +30,7 @@ function Nav() {
     const [catedrop, setcatedrop] = useState(false)
 
     return (
-        <div className=' fixed w-screen h-20 flex flex-col md:relative md:justify-around md:flex-row lg:justify-between py-3 items-center shadow-md  bg-white z-50' >
+        <div className=' fixed w-screen h-20 flex flex-col  md:justify-around md:flex-row lg:justify-between py-3 items-center shadow-md  bg-white z-50' >
             <div className='flex justify-between w-full lg:w-max'>
                 <div className=' text-purple-800 font-bold mx-3'>NUELmat.com</div>
                 <div className='mr-4 lg:hidden lg:mr-0 relative '>

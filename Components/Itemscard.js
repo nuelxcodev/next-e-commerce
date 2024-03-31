@@ -17,11 +17,11 @@ function Itemscard({ product }) {
 
     const existing = cartitems.find((item) => item.slug === product.slug)
     const quantity = existing ? existing.quantity + 1 : 1
-    
+
 
 
     return (
-        <div className=' mx-2 text md:w-64  p-4 h-74 rounded-md bg-white shadow-md '>
+        <div className='w-[80%] sm:w-56 xs:w-52 m-1 text md:w-64  p-4 h-74 rounded-md bg-white shadow-md '>
 
             <div className=' overflow-hidden h-52 flex justify-center items-center'  >
                 <Link href={`/item/${product.slug}`}>

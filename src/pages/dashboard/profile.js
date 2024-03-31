@@ -1,7 +1,6 @@
 
 import { useSession } from 'next-auth/react'
 import Admin from '.'
-import Avatarimage from '../../../Components/Avatarimage'
 import { BiSave } from 'react-icons/bi'
 
 function Profile() {
@@ -12,14 +11,14 @@ function Profile() {
     return (
         <div>
             <Admin>
-                <section>
-                    <section>
-                        <div>
+                <section className=' p-4'>
+                    <section className=' w-full px-2 flex'>
+                        <div className=' rounded-full overflow-hidden  border w-max mx-0 '>
                             <img src={session?.user.image} alt="profile" />
                         </div>
-                        <div>
-                            <p>{session?.user.name}</p>
-                            <p>{session?.user.email}</p>
+                        <div className=' mx-1 flex flex-col justify-end mb-4'>
+                            <p><b>name: </b>{session?.user.name}</p>
+                            <p> <b>email: </b>{session?.user.email}</p>
                         </div>
                     </section>
 

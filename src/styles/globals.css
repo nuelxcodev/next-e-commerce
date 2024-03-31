@@ -52,8 +52,10 @@ body {
   display: flex;
   overflow-x: scroll;
   padding-block: 7rem;
-  padding-inline-start: 3rem;
+  padding-inline: 3rem;
   margin: 0;
+  width: max-content;
+  scroll-padding-inline-end: 0;
   background-color: rgb(226, 226, 226);
 }
 .topReview::-webkit-scrollbar {
@@ -114,7 +116,7 @@ ul li {
   @apply p-3 md:rounded-md border shadow-inner;
 }
 .items-related {
-  @apply flex gap-2 flex-col md:flex-row overflow-scroll my-12 w-[85%];
+  @apply flex flex-wrap justify-center md:flex-nowrap md:overflow-scroll my-12 md:w-[85%];
 }
 .items-related::-webkit-scrollbar {
   display: none;
@@ -164,7 +166,7 @@ table tbody tr:last-of-type {
   display: none;
 }
 .orderNav {
-  @apply w-full flex
+  @apply w-full flex;
 }
 .orderNav li {
   @apply w-max mx-2 rounded-lg text-white bg-purple-800 p-3 cursor-pointer active:bg-purple-900;
@@ -182,9 +184,10 @@ table tbody tr:last-of-type {
   @apply w-full bg-transparent;
 }
 .productdisplay {
-  @apply w-full md:w-[80%] h-[80vh] overflow-y-scroll;
+  @apply w-full md:w-[80%] h-[80vh] overflow-y-scroll md:mt-2;
 }
 .productdisplay::-webkit-scrollbar {
   display: none;
 }
+
 /* ****************************************** */

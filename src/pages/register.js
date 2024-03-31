@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable no-unused-vars */
 import axios from 'axios'
 import { signIn, useSession } from 'next-auth/react'
@@ -26,7 +27,8 @@ function Register() {
 
     const submitHandler = (data) => {
 
-        axios.post('/api/auth/singup', data).then((response) => { console.log(response); })
+        axios.post('/api/auth/signup', data)
+            .then((response) => { console.log(response); })
     }
     const {
         register,

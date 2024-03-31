@@ -1,3 +1,4 @@
+'use client'
 import React, { useContext } from 'react'
 import { Cartcontext } from '../../utils/Cartcontext'
 import Image from 'next/image'
@@ -14,15 +15,10 @@ function Cart() {
     const { cartitems } = state
     const router = useRouter()
 
-
-
-
-
-
     return (
         <div>
             <Nav />
-            <section className=' pt-16 md:pt-0 relative  '>
+            <section className=' pt-24 relative  '>
 
                 <section>
                     {
@@ -87,7 +83,7 @@ function Cart() {
                             if (!session?.user) { router.push('/login') }
                             else if (state.shipping.isCompleted === true) { router.push('/checkout/payment') }
                             else { router.push('/checkout/shipping') }
-                        }}>checkOut $({cartitems.reduce((a, b) => a + b.price * b.quantity, 0)})</button>
+                        }}>checkOut $({cartitems.reduce((a, b) => a + b.price * b.quantity, 0).toFixed(2)})</button>
                 </section>
 
             </section>

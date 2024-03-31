@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
@@ -60,7 +61,7 @@ function Products() {
             </div>
             <section >
 
-                <section className='w-full flex flex-col md:flex-row pt-20 md:pt-0'>
+                <section className='w-full flex flex-col md:flex-row pt-20'>
                     {/* filteration section */}
                     <aside className=' w-full md:w-[20%] 
                     border-2 md:h-[80vh] gap-[10%] md:gap-0 flex flex-row
@@ -69,9 +70,9 @@ function Products() {
                         <h1>filter items by price</h1>
 
                         <select defaultValue="any" onChange={(e) => setnum(e.target.value === "any" ? 0 : e.target.value)}
-                            className='w-[30%] md:w-[95%] md:mt-5 bg-zinc-400 p-2 text-white outline-none  '>
+                            className='mt-0 w-[30%] md:w-[95%] md:mt-5 bg-zinc-400 p-2 text-white outline-none  '>
                             {
-                                ["any", 50, 100, 200, 500, 800, 1000].map(num => <option
+                                ["any", 5, 10, 20, 50, 500, 1000].map(num => <option
                                     className=' bg-white text-black'
                                     key={num} >{num}</option>)
                             }
@@ -92,17 +93,15 @@ function Products() {
                                 : (<section >
                                     {router.query.search ? (
                                         <div>
-                                            {productArray.length === 0 ? (
-                                                <div className='m-52 text-4xl text-center'> no item found!</div>)
-                                                : (
-                                                    <Pagination group={numb !== 0 ? productArray.filter(x => x.price < numb) : productArray} />
-                                                )}
+                                            <Pagination group={numb !== 0 ? productArray.filter(x => x.price < numb) : productArray}
+                                                category={router.query.search} price={numb} />
                                         </div>
                                     ) : (
                                         <div >
                                             <span className='ml-20 text-xl '>
                                                 {router.query.category}:</span>
-                                            <Pagination group={numb !== 0 ? filteritems.filter(x => x.price < numb) : filteritems} />
+                                            <Pagination group={numb !== 0 ? filteritems.filter(x => x.price < numb) : filteritems}
+                                                category={router.query.category} price={numb} />
                                         </div>)
                                     }
                                 </section>)

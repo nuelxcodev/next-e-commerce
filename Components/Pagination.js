@@ -3,7 +3,7 @@ import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import Itemscard from './Itemscard'
 
 
-export function Pagination({ group }) {
+export function Pagination({ group, price, category }) {
 
     const [currentPage, setcurrentPage] = useState(1)
     const numberofitems = 8
@@ -16,19 +16,13 @@ export function Pagination({ group }) {
     const pages = Math.ceil(group.length / numberofitems)
     const pagenum = [...Array(pages + 1).keys()].slice(1)
 
-    if (group.length === 0) return <div className='flex justify-center items-center h-[80vh]'>no item found</div>
+    if (group.length === 0) return <div className='flex justify-center items-center h-[80vh]'>
+        no <b className='mx-1'>{category}</b> below <b className='mx-1'> ${price} </b> was found</div>
 
     return (
         <div className=' w-full overflow-hidden '>
             <div className='
-                pt-2
-                md:pt-6
-                mx-auto grid
-                items-center 
-                grid-cols-1 overflow-x-hidden
-                sm:grid-cols-2 
-                gap-2 md:grid-cols-3 
-                lg:grid-cols-4 w-[100%]'>
+               flex flex-wrap justify-center gap-2 md:gap-3'>
                 {
                     results.map((result, index) => <Itemscard key={index} product={result}></Itemscard>)
                 }

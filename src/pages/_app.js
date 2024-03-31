@@ -1,27 +1,12 @@
-import { useEffect, useState } from "react";
+'use client'
 import { CartProvider } from "../../utils/Cartcontext";
 import "../styles/globals.css";
 import Head from "next/head";
 import { AuthProvider } from "../../utils/Providers";
 
 
-
-
-
-
-
 export default function MyApp({ Component, pageprops, title }) {
-
-
-	const [isclient, setisclient] = useState(false)
-
-	useEffect(() => {
-		setisclient(true)
-	}, [])
-
-	if (!isclient) return null
 	return (
-
 		<>
 			<Head>
 				<title>{title ? title + " -NULMAT " : "NULMAT"}</title>
@@ -30,20 +15,20 @@ export default function MyApp({ Component, pageprops, title }) {
 
 			</Head>
 
-			
-				<AuthProvider>
-					<CartProvider >
-						<Component {...pageprops} />
-					</CartProvider>
-				</AuthProvider>
-			
+
+			<AuthProvider>
+				<CartProvider >
+					<Component {...pageprops} />
+				</CartProvider>
+			</AuthProvider>
 
 
 
 
-		</>
+
+		</>)
 
 
-	);
+
 }
 
